@@ -1,0 +1,49 @@
+Source: node-crypto-browserify
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , node-browserify-cipher
+ , node-browserify-sign
+ , node-create-ecdh
+ , node-create-hash
+ , node-create-hmac
+ , node-hash-test-vectors
+ , node-inherits
+ , node-pbkdf2
+ , node-pseudorandombytes
+ , node-public-encrypt
+ , node-randombytes
+ , node-randomfill
+ , node-tape
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-crypto-browserify
+Vcs-Git: https://salsa.debian.org/js-team/node-crypto-browserify.git
+Homepage: https://github.com/crypto-browserify/crypto-browserify
+Rules-Requires-Root: no
+
+Package: node-crypto-browserify
+Architecture: all
+Depends: ${misc:Depends}
+ , node-browserify-cipher
+ , node-browserify-sign
+ , node-create-ecdh
+ , node-create-hash
+ , node-create-hmac
+ , node-inherits
+ , node-pbkdf2
+ , node-public-encrypt
+ , node-randombytes
+ , node-randomfill
+Description: implementation of crypto for the browser
+ This library is an implementation of node's crypto for the browser.
+ .
+ This library is a dependency for webpack. Webpack takes code targeted at
+ node.js and makes it run in the browser. Node.js comes with API of its own
+ that is not available in the browsers. Webpack exposes this code
+ to programs that are unaware they are running in a browser.
+ .
+ Node.js is an event-based server-side JavaScript engine.

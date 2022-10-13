@@ -1,0 +1,7 @@
+# test data
+source-is-missing test/public-encrypt.js
+source-is-missing test/sign.js
+source-contains-prebuilt-javascript-object test/public-encrypt.js
+source-contains-prebuilt-javascript-object test/sign.js
+very-long-line-length-in-source-file test/public-encrypt.js line 4 is 3318 characters long (>512)
+very-long-line-length-in-source-file test/sign.js line 6 is 3318 characters long (>512)

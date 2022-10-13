@@ -1,0 +1,31 @@
+Description: Remove diffie hellman support
+ https://github.com/crypto-browserify/diffie-hellman/issues/22
+--- a/index.js
++++ b/index.js
+@@ -28,14 +28,6 @@
+ exports.getCiphers = aes.getCiphers
+ exports.listCiphers = aes.listCiphers
+ 
+-var dh = require('diffie-hellman')
+-
+-exports.DiffieHellmanGroup = dh.DiffieHellmanGroup
+-exports.createDiffieHellmanGroup = dh.createDiffieHellmanGroup
+-exports.getDiffieHellman = dh.getDiffieHellman
+-exports.createDiffieHellman = dh.createDiffieHellman
+-exports.DiffieHellman = dh.DiffieHellman
+-
+ var sign = require('browserify-sign')
+ 
+ exports.createSign = sign.createSign
+--- a/test/index.js
++++ b/test/index.js
+@@ -1,9 +1,6 @@
+ 
+ require('./create-hash')
+ require('./create-hmac')
+-if (!process.browser) {
+-  require('./dh')
+-}
+ 
+ require('./pbkdf2')
+ try {

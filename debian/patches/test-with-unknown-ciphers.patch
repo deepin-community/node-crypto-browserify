@@ -1,0 +1,48 @@
+Description: schemes depend on openssl compilation flags
+Last-Update: 2017-12-30
+Author: Jérémy Lal <kapouer@melix.org>
+Forwarded: https://github.com/crypto-browserify/crypto-browserify/issues/175
+--- a/test/sign.js
++++ b/test/sign.js
+@@ -31,7 +31,12 @@
+ 
+     t.test('node sign and verify', function (t) {
+       t.plan(t)
+-      var mySign = nodeCrypto.createSign(scheme)
++      var mySign
++      try { mySign = nodeCrypto.createSign(scheme) } catch(ex) {
++        console.info("skipping unsupported scheme", scheme)
++        t.end()
++        return
++      }
+       var mySig = mySign.update(message).sign(priv)
+       var myVer = nodeCrypto.createVerify(scheme)
+       t.ok(myVer.update(message).verify(pub, mySig), 'validates')
+@@ -39,7 +44,12 @@
+ 
+     t.test('node sign and js verify', function (t) {
+       t.plan(t)
+-      var mySign = nodeCrypto.createSign(scheme)
++      var mySign
++      try { mySign = nodeCrypto.createSign(scheme) } catch(ex) {
++        console.info("skipping unsupported scheme", scheme)
++        t.end()
++        return
++      }
+       var mySig = mySign.update(message).sign(priv)
+       var myVer = ourCrypto.createVerify(scheme)
+       t.ok(myVer.update(message).verify(pub, mySig), 'validates')
+@@ -49,7 +59,12 @@
+       t.plan(t)
+       var mySign = ourCrypto.createSign(scheme)
+       var mySig = mySign.update(message).sign(priv)
+-      var myVer = nodeCrypto.createVerify(scheme)
++      var myVer
++      try { myVer = nodeCrypto.createVerify(scheme) } catch(ex) {
++        console.info("skipping unsupported scheme", scheme)
++        t.end()
++        return
++      }
+       t.ok(myVer.update(message).verify(pub, mySig), 'validates')
+     })
+   })
